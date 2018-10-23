@@ -1,0 +1,7 @@
+The OLSR.org framework is based on the OLSR.org stable and master branch
+OLSR (RFC3626) implementation (see HISTORY_pre_framework for details).
+
+It was cleaned up, rewritten, modified and extended by Henning Rogge 
+(henning.rogge@fkie.fraunhofer.de) since 2010.
+
+The work was sponsored by the European Union CONFINE project from 2011 to 2015.

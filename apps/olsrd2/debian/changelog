@@ -1,0 +1,5 @@
+olsrd2 (SHORTVERSION) UNRELEASED; urgency=medium
+
+  * Git version FULLVERSION
+
+ -- Henning Rogge <henning.rogge@fkie.fraunhofer.de>  DATETIME

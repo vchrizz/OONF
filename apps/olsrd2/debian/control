@@ -1,0 +1,12 @@
+Source: olsrd2
+Maintainer: Henning Rogge <henning.rogge@fkie.fraunhofer.de>
+Section: net
+Priority: optional
+Standards-Version: 3.9.6
+Build-Depends: debhelper (>= 9), dh-systemd (>= 1.5)
+
+Package: olsrd2
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: routing agent for OLSRv2 routing protocol
+ see http://www.olsr.org for more information

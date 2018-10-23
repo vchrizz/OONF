@@ -1,0 +1,81 @@
+#! /bin/sh
+### BEGIN INIT INFO
+# Provides:          olsrd2
+# Required-Start:    $network $remote_fs $syslog
+# Required-Stop:     $network $remote_fs $syslog
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: Start the OLSRd2 mesh daemon
+# Description:       System mode startup script for
+#                    the olsr.org OLSRv2 mesh daemon.
+### END INIT INFO
+
+#   Based on skeleton script written by Miquel van Smoorenburg <miquels@cistron.nl>.
+#   Modified for Debian
+#   by Ian Murdock <imurdock@gnu.ai.mit.edu>.
+#   Modified for olsrd
+#   by Holger Levsen <debian@layer-acht.org>
+#   Modified for olsrd2
+#   by Henning Rogge <hrogge@gmail.com>
+#
+# Version:  21-Dec-2006
+# modified: 01-Aug-2007
+#           31-Jun-2008
+#           30-May-2009
+#           02-Oct-2012
+#           11-Feb-2016
+
+. /lib/lsb/init-functions
+
+PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+DAEMON=/usr/sbin/olsrd2_static
+CONFIG=/etc/olsrd2/olsrd2.conf
+NAME=olsrd2
+DESC=olsrd2
+
+PID_FILE=/var/run/$NAME.pid
+
+test -x $DAEMON || exit 0
+
+set -e
+
+case "$1" in
+  start)
+  if [ "$(pidof $NAME)" != "" ] ; then
+    echo "$NAME already running, doing nothing."
+    exit 0
+  fi
+  echo -n "Starting $DESC: "
+  start-stop-daemon --start --quiet --exec $DAEMON --pidfile $PID_FILE -- --load $CONFIG
+  # sleep til olsrd has been started
+  while ! pidof $NAME > /dev/null ; do
+    sleep 1
+  done
+  echo "$NAME."
+  echo $(pidof $NAME) > $PID_FILE
+  ;;
+  stop)
+  pidof $NAME || exit 0
+  echo -n "Stopping $DESC: "
+  start-stop-daemon --stop  --quiet --exec $DAEMON --pidfile $PID_FILE
+  rm -f $PID_FILE
+  echo "$NAME."
+  ;;
+  restart|force-reload)
+  echo -n "Restarting $DESC: "
+  if [ "$(pidof $NAME)" == "" ] ; then
+    echo "$NAME not running, starting service."
+    $0 start
+    exit 0
+  fi
+  echo -n "Restarting $DESC: "
+  kill -HUP `cat $PID_FILE`
+  ;;
+  *)
+  N=/etc/init.d/$NAME
+  echo "Usage: $N {start|stop|restart}" >&2
+  exit 1
+  ;;
+esac
+
+exit 0

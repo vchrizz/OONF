@@ -1,0 +1,13 @@
+# look at http://www.olsr.org/mediawiki/index.php/OONF_Configuration#Formats
+# to find more information about the common OONF configuration formats
+
+# look at http://www.olsr.org/mediawiki/index.php/OLSR_network_deployments
+# to find some typical Olsrd(2) deployment examples 
+
+[global]
+        fork    no
+
+[olsrv2]
+        lan     0.0.0.0/0
+
+[interface=wlan0]

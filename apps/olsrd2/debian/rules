@@ -1,0 +1,16 @@
+#!/usr/bin/make -f
+%:
+	dh $@ --with=systemd
+
+override_dh_auto_configure:
+	cmake 	-D CMAKE_INSTALL_PREFIX=/usr \
+		-D CMAKE_VERBOSE_MAKEFILE=ON \
+		-D CMAKE_BUILD_TYPE=DEBUG \
+		-D OONF_LOGGING_LEVEL=debug \
+		-D OONF_NO_WERROR:Bool=true \
+		SOURCETOOLCHAIN \
+		$(CURDIR)
+
+override_dh_auto_install:
+	make -j1 install_olsrd2_static DESTDIR=$(CURDIR)/debian/olsrd2 AM_UPDATE_INFO_DIR=no
+	install -p -m0644 $(CURDIR)/debian/olsrd2.conf $(CURDIR)/debian/olsrd2/etc/olsrd2/olsrd2.conf

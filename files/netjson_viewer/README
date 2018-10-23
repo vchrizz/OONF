@@ -1,0 +1,21 @@
+The netjson viewer is a minimal way to visualize the live-topology of olsrd2.
+
+It uses the vis.js API (http://visjs.or) and an XMLHttpRequest to load data from
+olsrd2 during runtime from the netjsoninfo plugin.
+
+As a minimal solution to use this plugin put vis.js, vis.css, netjson_view.js
+on a webserver and adapt the links in netjson_view.html to it.
+
+Put netjson_view.html in the /tmp/www directory of your node. It needs to be on
+the same IP as the olsrd2, because otherwise the XMLHttpRequest will be blocked
+as a crosssite-script attack.
+
+Compile olsrd2 with http plugin and allow it to publish the content of /tmp/www.
+
+[http]
+    bindto        0.0.0.0
+    webserver     /tmp/www
+
+After this you should get the viewer by accessing
+
+http://<ip-of-olsrd2-node>:1980/www/netjson_view.html

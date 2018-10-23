@@ -1,0 +1,10 @@
+[Unit]
+Description=OLSRd2 Routing agent
+Documentation=http://www.olsr.org/
+Requires=networking.service
+
+[Service]
+ExecStart=/usr/sbin/olsrd2_static --load=/etc/olsrd2/olsrd2.conf
+
+[Install]
+WantedBy=multi-user.target

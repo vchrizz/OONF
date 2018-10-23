@@ -1,0 +1,12 @@
+The OONF App executable loads everything from dynamic libraries, including the subsystems.
+
+Because of this you should run it with the following minimal configuration:
+
+[global]
+    plugin   class
+    plugin   clock
+    plugin   socket
+    plugin   timer
+    plugin   os_clock
+    plugin   os_fd
+    plugin   os_system

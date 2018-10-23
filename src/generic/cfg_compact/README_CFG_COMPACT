@@ -1,0 +1,13 @@
+   PLUGIN USAGE
+==================
+CFGIO_FILE plugin by Henning Rogge
+
+The plugin supports loading and storing configuration data from
+and to files in a compact format similar to the windows ini files.
+
+
+
+   PLUGIN CONFIGURATION
+==========================
+
+The plugin needs no configuration.
