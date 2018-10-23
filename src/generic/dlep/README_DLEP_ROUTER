@@ -1,0 +1,25 @@
+   PLUGIN USAGE
+==================
+DLEP_ROUTER plugin by Henning Rogge
+
+The plugin implements Draft-07 of the Dynamic Link Exchange Protocol of the
+IETF MANET group. It was written as part of the EU CONFINE project in 2014.
+
+See https://tools.ietf.org/html/draft-ietf-manet-dlep-07 for details.
+
+
+
+   PLUGIN CONFIGURATION
+==========================
+
+The following example configuration integrates a DLEP-Router plugin into an
+OLSRv2 application for receiving linklayer information.
+
+
+[global]
+        plugins         dlep_router
+        plugins         layer2info
+
+[layer2info]
+
+[dlep_router=eth0.101]

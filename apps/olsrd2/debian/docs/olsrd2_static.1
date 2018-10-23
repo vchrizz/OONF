@@ -1,0 +1,88 @@
+.TH olsrd2_static 1
+.SH NAME
+olsrd2_static \- OLSRv2 routing agent of OLSR.org
+.SH SYNOPSIS
+.B olsrd2_static [ -h, --help ] [ -v, --version ] [ -p, --plugin=
+.I shared-library
+.B ] [ -q, --quit ] [ --schema ] [ --schema=
+.I spec
+.B ] [ -L, --load=
+.I SOURCE
+.B ] [ -S, --save=
+.I TARGET
+.B ] [ -s, --set=
+.I spec
+.B ] [ -r, --remove=
+.I spec
+.B ] [ -g, --get=
+.I spec
+.B ] [ --Xearlydebug ] [ --Xignoreunknown ]
+.I interfaces
+.B ...
+.SH DESCRIPTION
+.B olsrd2_static
+runs the OLSRv2 (RFC7181 and RFC6130) routing protocol on one or multiple
+interfaces. It builds up a routing table to make all other OLSRd2 instances
+and their attached networks reachable through IP forwarding.
+.SH OPTIONS
+.IP "-h, --help"
+Display this help file
+.IP "-v, --version"
+Display the version string and the included static plugins
+.IP "-p, --plugin=shared-library"
+Load a shared library as a plugin
+.IP "-q, --quit"
+Load plugins and validate configuration, then end
+.IP "--schema"
+Display all allowed section types of configuration
+.IP "--schema=all"
+Display all allowed entries in all sections
+.IP "--schema=section_type"
+Display all allowed entries of one configuration section
+.IP "--schema=section_type.key"
+Display help text for configuration entry
+.IP "-l, --load=SOURCE"
+Load configuration from a SOURCE
+.IP "-S, --save=TARGET"
+Save configuration to a TARGET
+.IP "-s, --set=section_type."
+Add an unnamed section to the configuration
+.IP "-s, --set=section_type.key=value"
+Add a key/value pair to an unnamed section
+.IP "-s, --set=section_type[name]."
+Add a named section to the configuration
+.IP "-s, --set=section_type[name].key=value"
+Add a key/value pair to a named section
+.IP "-r, --remove=section_type."
+Remove all sections of a certain type
+.IP "-r, --remove=section_type.key"
+Remove a key in an unnamed section
+.IP "-r, --remove=section_type[name]."
+Remove a named section
+.IP "-r, --remove=section_type[name].key"
+Remove a key in a named section
+.IP "-g, --get"
+Show all section types in database
+.IP "-g, --get=section_type."
+Show all named sections of a certain type
+.IP "-g, --get=section_type.key"
+Show the value(s) of a key in an unnamed section
+.IP "-g, --get=section_type[name].key"
+Show the value(s) of a key in a named section
+.IP "--Xearlydebug"
+Activate debugging output before configuration could be parsed
+.IP "--Xignoreunknown"
+Ignore unknown command line arguments
+.SH DESCRIPTION
+See
+.I
+http://www.olsr.org
+for a more detailed description of
+.B olsrd2
+and its components.
+.SH FILES
+.I /etc/olsrd2/olsrd2.conf
+.RS
+The system wide configuration file.
+.SH AUTHOR
+Henning Rogge <henning.rogge@fkie.fraunhofer.de>

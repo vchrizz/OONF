@@ -1,0 +1,34 @@
+   PLUGIN USAGE
+==================
+DLEP_RADIO plugin by Henning Rogge
+
+The plugin implements Draft-07 of the Dynamic Link Exchange Protocol of the
+IETF MANET group. It was written as part of the EU CONFINE project in 2014.
+
+See https://tools.ietf.org/html/draft-ietf-manet-dlep-07 for details.
+
+
+
+   PLUGIN CONFIGURATION
+==========================
+
+The following example configuration combines the dlep_radio plugin with the
+nl80211_listener and layer2info plugin for a single-radio DLEP implementation.
+
+
+[global]
+        plugin          dlep_radio
+        plugin          layer2info
+        plugin          nl80211_listener
+
+[layer2info]
+
+[nl80211_listener]
+        if              wlan0
+        interval        1.0
+
+[dlep_radio=br-lan]
+        source          wlan0
+        not_proxied     false
+        proxied         true
+
